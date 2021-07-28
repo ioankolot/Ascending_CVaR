@@ -4,12 +4,16 @@ import scipy.optimize
 import numpy as np
 import matplotlib.pyplot as plt
 
-#We will use linear ascending. You can change both values below.
+#The code below refers to the paper: An evolving objective function for improved variational quantum optimisation.
+
+#The example below is referred to the Number Partitioning problem.
+
+#We will use linear ascending. This can be modified. An ascending function, as described in the paper works really well.
+#You can change both values below.
 ascending_factor = 0.03 #The ascending factor
 alpha = 0.01 #The starting value of alpha. 
 
 #We prepare the random instance of the number partion problem.
-np.random.seed(10) # You can play with what ever seed you want.
 number_of_qubits = 16
 number_list = [np.random.randint(0, 500) for _ in range(number_of_qubits)]
 
@@ -19,7 +23,7 @@ steps = 16 #The number of times we ascend alpha.
 
 
 #First of all we define the CVaR objective function as defined by Barkoutsos et al.
-def CVaR(percentage, energies):
+def CVaR(percentage, energies): #percentage = α , i.e the tail of the distribution
     len_list = len(energies)
     ak = math.ceil(len_list * percentage)
     cvar = 0
@@ -27,8 +31,8 @@ def CVaR(percentage, energies):
         cvar += energies[sample]
     return cvar/ak
 
-#We have to test how the Ascending-CVaR behaves in respect to other constant CVaR objective functions with different values of a.
-#We work with a = 0.1, 0.2, 0.5, 1 but you can play with different values of a. For our experiments you will need a > 0.1.
+#We have to test how the Ascending-CVaR behaves in respect to other constant CVaR objective functions with different values of α.
+#We work with α = 0.1, 0.2, 0.5, 1, where α = 1 corresponds to the expectation value, but you can play with different values of α. For our experiments you will need α > 0.1.
 
 #We set four global variables to keep track of the constant CVaR optimisation in order to plot the results.
 cvar_01_counter = 0
