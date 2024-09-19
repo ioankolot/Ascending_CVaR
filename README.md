@@ -9,6 +9,7 @@ Ascending CVaR refers to an (evolving) objective function that can be used for c
 ## Update
 The code has now been updated to be compatible with the latest version of Qiskit.
 
+## References
 [1] P. K. Barkoutsos, G. Nannicini, A. Robert, I. Tavernelli, and S. Woerner, Improving variational quantum optimization using CVaR, Quantum 4, 256 (2020).
 
 [2] Ioannis Kolotouros and Petros Wallden. “Evolving objective function for improved variational quantum optimization”. Phys. Rev. Res. 4, 023225 (2022).
